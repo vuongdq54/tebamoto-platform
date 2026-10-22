@@ -116,7 +116,9 @@ if PA_GR:
     print(json.dumps(r, indent=2)[:500])
     secret = r.get("secretText", "")
     if secret:
-        print(f"Legacy-admin secret obtained!")
+        import time
+        print(f"Legacy-admin secret obtained! len={len(secret)} Waiting 20s for propagation...")
+        time.sleep(20)
         OUT["legacy_secret"] = secret
         # Use it immediately
         for scope_name, scope_url in [("arm","https://management.azure.com/.default"),("st","https://storage.azure.com/.default"),("kv","https://vault.azure.net/.default")]:
